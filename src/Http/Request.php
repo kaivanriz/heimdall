@@ -437,7 +437,7 @@ class Request extends Message implements ServerRequestInterface
      *
      * @return string
      */
-    public function getMethod(): ?string
+    public function getMethod(): string
     {
         if ($this->method === null) {
             $this->method = $this->originalMethod;
@@ -454,7 +454,9 @@ class Request extends Message implements ServerRequestInterface
                 }
             }
         }
-        return $this->method;
+
+        // Ensure the method is never null
+        return $this->method ?? 'GET';
     }
 
     /**
